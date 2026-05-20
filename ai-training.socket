@@ -1,0 +1,8 @@
+[Unit]
+Description=gunicorn socket
+
+[Socket]
+ListenStream=/var/www/html/Ai-training-platform/ai_training_platform/app.sock
+
+[Install]
+WantedBy=sockets.target

@@ -1,0 +1,17 @@
+[Unit]
+Description=gunicorn daemon
+Requires=ai-training.socket
+After=network.target
+
+[Service]
+User=jenkins
+Group=www-data
+WorkingDirectory=/var/www/html/Ai-training-platform/ai_training_platform/
+ExecStart=/var/www/html/Ai-training-platform/ai_training_platform/venv/bin/gunicorn \
+          --access-logfile - \
+          --workers 3 \
+          --bind unix:/var/www/html/Ai-training-platform/ai_training_platform/app.sock \
+          ai_training_platform.wsgi:application
+
+[Install]
+WantedBy=multi-user.target
